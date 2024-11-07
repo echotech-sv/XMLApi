@@ -40,13 +40,13 @@ jobs:
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
           unzip sonar-scanner.zip
           export PATH="$PATH:$(pwd)/sonar-scanner-4.7.0.2747-linux/bin"
-          echo "PATH=$PATH" >> $GITHUB_ENV  # Esto persiste la variable PATH en todo el flujo de trabajo
+          echo "PATH=$PATH" >> $GITHUB_ENV
 
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          source ~/.bashrc  # Asegúrate de que los cambios de PATH se apliquen
+          source ~/.bashrc
           sonar-scanner \
             -Dsonar.projectKey=XMLApi \
             -Dsonar.host.url=https://sonar.echotechs.net \
