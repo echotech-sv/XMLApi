@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      # Paso 2: Configuración de JDK 21 y Maven usando actions/setup-java
+      # Paso 2: Configuración de JDK 17 y Maven usando actions/setup-java
       - name: Set up JDK 17 and Maven
         uses: actions/setup-java@v2
         with:
