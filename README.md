@@ -9,15 +9,15 @@
 
 ### Get Started
 * install jdk 17
-* clone the repository https://gitlab.com/portfolio8821020/XMLApi.git
+* clone the repository https://github.com/echotech-sv/XMLApi.git
 * run with maven or java
 
 ### Docker Image
-* registry.gitlab.com/portfolio8821020/xmlapi:main
+* ghcr.io/echotech-sv/xmlapi/xmlapi:latest
 
 ### Run Image
-* docker pull registry.gitlab.com/portfolio8821020/xmlapi:main
-* docker run -d -p 8080:8080 registry.gitlab.com/portfolio8821020/xmlapi:main
+* docker pull ghcr.io/echotech-sv/xmlapi/xmlapi:latest
+* docker run -d -p 8080:8080 ghcr.io/echotech-sv/xmlapi/xmlapi:latest
 
 ### Postman Collection
 * XMLApi.postman_collection.json
