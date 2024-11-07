@@ -50,7 +50,8 @@ jobs:
           sonar-scanner \
             -Dsonar.projectKey=XMLApi \
             -Dsonar.host.url=https://sonar.echotechs.net \
-            -Dsonar.login=$SONAR_TOKEN       
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.java.binaries=/home/runner/work/XMLApi/XMLApi/xmlapi/target/classes       
 
       # Paso 6: Build de la imagen Docker
       - name: Build Docker Image
