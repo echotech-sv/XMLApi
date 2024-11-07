@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
 
+    #CI
+
     steps:
       # Paso 1: Checkout del código fuente
       - name: Checkout Code
@@ -68,4 +70,10 @@ jobs:
         run: |
           docker push ghcr.io/echotech-sv/xmlapi/xmlapi:latest
 
-      # Paso 9: Publicacion en el servidor o un cluster de kubernetes 2
+      #CD
+
+      # Paso 9: Publicacion en el servidor o un cluster de kubernetes
+
+      # Paso 10: Publicacion en API Management o API Gateway
+
+      # Paso 11: Automatizacion de Pruebas QA
