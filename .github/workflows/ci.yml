@@ -59,4 +59,4 @@ jobs:
         run: |
           docker push ghcr.io/echotech-sv/XMLApi/XMLApi:latest
 
-      # Paso 9: Publicacion en el servidor o un cluster de kuber
+      # Paso 9: Publicacion en el servidor o un cluster de kubernetes
