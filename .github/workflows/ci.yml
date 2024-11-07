@@ -36,14 +36,13 @@ jobs:
 
       # Paso 5: Análisis de SonarQube
       - name: SonarQube Scan
-        uses: SonarSource/sonarcloud-github-action@v1
-        with:
-          projectBaseDir: '.' # Cambia si tu base de proyecto es diferente
-          args: >
-            -Dsonar.projectKey=XMLApi
-            -Dsonar.organization=echotech-sv
-            -Dsonar.host.url=https://sonar.echotechs.net
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}          
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=XMLApi \
+            -Dsonar.host.url=https://sonar.echotechs.net \
+            -Dsonar.login=$SONAR_TOKEN        
 
       # Paso 6: Build de la imagen Docker
       - name: Build Docker Image
