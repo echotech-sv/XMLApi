@@ -8,6 +8,7 @@ on:
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
+    environment: dev
 
     steps:
       # Paso 1: Checkout del código fuente
@@ -59,4 +60,4 @@ jobs:
         run: |
           docker push ghcr.io/echotech-sv/XMLApi/XMLApi:latest
 
-      # Paso 9: Publicacion en el servidor o un cluster de kubernetes 1
+      # Paso 9: Publicacion en el servidor o un cluster de kubernetes 2
