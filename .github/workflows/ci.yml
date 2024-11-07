@@ -31,7 +31,7 @@ jobs:
       # Paso 4: Compilación del proyecto Maven
       - name: Build with Maven
         run: |
-          mvn -B -f /home/runner/work/XMLApi/xmlapi/pom.xml clean package -DskipTests
+          mvn -B -f /home/runner/work/XMLApi/XMLApi/xmlapi/pom.xml clean package -DskipTests
 
       # Paso 5: Análisis de SonarQube
       - name: SonarQube Scan
