@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "6d0f63b4-237c-455e-86e7-a729e8790fc0",
+		"name": "XMLApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10951121"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/xmlschema/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"xmlschema",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSearch",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/xmlschema/search/utility",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"xmlschema",
+						"search",
+						"utility"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

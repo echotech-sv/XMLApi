@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xmlapi-dpm
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: xmlapi-dpm
+  template:
+    metadata:
+      labels:
+        app: xmlapi-dpm
+    spec:
+      containers:
+      - name: xmlapi-dpm
+        image: registry.gitlab.com/portfolio8821020/xmlapi:main
+        ports:
+        - containerPort: 8080
+        env:
+          - name: KUBE_API_TOKEN
+            value: $KUBE_API_TOKEN
+          - name: KUBE_SERVER
+            value: $KUBE_SERVER
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1000Mi"
+          requests:
+            cpu: "0.5"
+            memory: "500Mi"
