@@ -43,6 +43,11 @@ public class XMLSchemaController {
         Mono<String> result = xmlServiceClient.getXMLSchemaBySearch(text);
         log.info(result.block());
         return ResponseEntity.ok(result.block());
-    }      
+    } 
+    
+    
+
+    
+    
 
 }
