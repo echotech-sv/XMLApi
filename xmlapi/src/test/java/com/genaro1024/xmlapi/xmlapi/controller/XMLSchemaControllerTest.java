@@ -36,7 +36,7 @@ class XMLSchemaControllerTest {
 
     @Test
     void testGetAllXML() {
-        driver.get("http://localhost:8080/xmlschema/all");
+        driver.get("http://localhost:8081/xmlschema/all");
         WebElement body = driver.findElement(By.tagName("body"));
         // Add assertions based on expected XML content
         assertEquals("expected XML content", body.getText());
@@ -44,7 +44,7 @@ class XMLSchemaControllerTest {
 
     @Test
     void testGetXMLBySearch() {
-        driver.get("http://localhost:8080/xmlschema/search/sample");
+        driver.get("http://localhost:8081/xmlschema/search/sample");
         WebElement body = driver.findElement(By.tagName("body"));
         // Add assertions based on expected XML content
         assertEquals("expected XML content for search", body.getText());
@@ -52,21 +52,21 @@ class XMLSchemaControllerTest {
 
     @Test
     void testEcho() {
-        driver.get("http://localhost:8080/xmlschema/echo/test");
+        driver.get("http://localhost:8081/xmlschema/echo/test");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("test", body.getText());
     }
 
     @Test
     void testUppercase() {
-        driver.get("http://localhost:8080/xmlschema/uppercase/test");
+        driver.get("http://localhost:8081/xmlschema/uppercase/test");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("TEST", body.getText());
     }
 
     @Test
     void testLowercase() {
-        driver.get("http://localhost:8080/xmlschema/lowercase/TEST");
+        driver.get("http://localhost:8081/xmlschema/lowercase/TEST");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("test", body.getText());
     }

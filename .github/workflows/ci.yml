@@ -45,8 +45,8 @@ jobs:
       # Paso 5. Iniciar la aplicación
       - name: Start Spring Boot application
         run: java -jar /home/runner/work/XMLApi/XMLApi/xmlapi/target/xmlapi-0.0.1-SNAPSHOT.jar &
-        #env:
-        #  SPRING_PROFILES_ACTIVE: test
+        env:
+          SPRING_PROFILES_ACTIVE: test
 
       # Paso 6. Asegurarse de que la aplicación está lista
       - name: Wait for the application to start
