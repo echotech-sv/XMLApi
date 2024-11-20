@@ -7,19 +7,24 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 class XMLSchemaControllerTest {
 
+    
     private WebDriver driver;
 
     @BeforeEach
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-        driver = new ChromeDriver();
+    public void setUp() throws MalformedURLException {
+        ChromeOptions options = new ChromeOptions();
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
     }
 
     @AfterEach
