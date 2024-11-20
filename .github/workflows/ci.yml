@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
 
+    services:
+      selenium:
+        image: selenium/standalone-chrome
+        ports:
+          - 4444:4444
+
     #CI
 
     steps:
@@ -36,7 +42,13 @@ jobs:
         run: |
           mvn -B -f /home/runner/work/XMLApi/XMLApi/xmlapi/pom.xml clean package -DskipTests
 
-      # Paso 5: Análisis de SonarQube
+      # Paso 5: Ejecución de pruebas
+      - name: Run tests
+        run: mvn test
+        env:
+          DISPLAY: :99.0
+
+      # Paso 6: Análisis de SonarQube
       - name: Install SonarScanner
         run: |
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
@@ -55,17 +67,17 @@ jobs:
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.java.binaries=/home/runner/work/XMLApi/XMLApi/xmlapi/target/classes       
 
-      # Paso 6: Build de la imagen Docker
+      # Paso 7: Build de la imagen Docker
       - name: Build Docker Image
         run: |
           docker build -t ghcr.io/echotech-sv/xmlapi/xmlapi:latest .
 
-      # Paso 7: Login en GitHub Container Registry
+      # Paso 8: Login en GitHub Container Registry
       - name: Docker Login to GHCR
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      # Paso 8: Subida de la imagen Docker a GHCR
+      # Paso 9: Subida de la imagen Docker a GHCR
       - name: Push Docker Image
         run: |
           docker push ghcr.io/echotech-sv/xmlapi/xmlapi:latest
