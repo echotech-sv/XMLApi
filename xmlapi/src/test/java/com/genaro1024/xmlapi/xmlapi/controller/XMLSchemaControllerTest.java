@@ -9,13 +9,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
-@TestPropertySource(locations = "classpath:application-test.properties")
-public class XMLSchemaControllerTest {
+class XMLSchemaControllerTest {
 
     private WebDriver driver;
 
@@ -33,7 +30,7 @@ public class XMLSchemaControllerTest {
     }
 
     @Test
-    public void testGetAllXML() {
+    void testGetAllXML() {
         driver.get("http://localhost:8080/xmlschema/all");
         WebElement body = driver.findElement(By.tagName("body"));
         // Add assertions based on expected XML content
@@ -41,7 +38,7 @@ public class XMLSchemaControllerTest {
     }
 
     @Test
-    public void testGetXMLBySearch() {
+    void testGetXMLBySearch() {
         driver.get("http://localhost:8080/xmlschema/search/sample");
         WebElement body = driver.findElement(By.tagName("body"));
         // Add assertions based on expected XML content
@@ -49,21 +46,21 @@ public class XMLSchemaControllerTest {
     }
 
     @Test
-    public void testEcho() {
+    void testEcho() {
         driver.get("http://localhost:8080/xmlschema/echo/test");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("test", body.getText());
     }
 
     @Test
-    public void testUppercase() {
+    void testUppercase() {
         driver.get("http://localhost:8080/xmlschema/uppercase/test");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("TEST", body.getText());
     }
 
     @Test
-    public void testLowercase() {
+    void testLowercase() {
         driver.get("http://localhost:8080/xmlschema/lowercase/TEST");
         WebElement body = driver.findElement(By.tagName("body"));
         assertEquals("test", body.getText());
