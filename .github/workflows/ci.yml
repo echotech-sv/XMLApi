@@ -48,6 +48,20 @@ jobs:
         #env:
         #  SPRING_PROFILES_ACTIVE: test
 
+      # Paso 6. Asegurarse de que la aplicación está lista
+      - name: Wait for the application to start
+        run: |
+          for i in {1..10}; do
+            if curl --silent http://localhost:8080/actuator/health | grep UP; then
+              echo "Application is up!";
+              exit 0;
+            fi
+            echo "Waiting for application to start...";
+            sleep 5;
+          done
+          echo "Application did not start in time.";
+          exit 1
+
       # Paso 5: Ejecución de pruebas
       - name: Run tests
         run: mvn -f /home/runner/work/XMLApi/XMLApi/xmlapi/pom.xml test
