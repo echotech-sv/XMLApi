@@ -52,6 +52,7 @@ jobs:
       - name: Wait for the application to start
         run: |
           for i in {1..10}; do
+            sleep 10;
             if curl --silent http://localhost:8081/actuator/health | grep UP; then
               echo "Application is up!";
               exit 0;
@@ -62,13 +63,13 @@ jobs:
           echo "Application did not start in time.";
           exit 1
 
-      # Paso 5: Ejecución de pruebas
+      # Paso 7: Ejecución de pruebas
       - name: Run tests
         run: mvn -f /home/runner/work/XMLApi/XMLApi/xmlapi/pom.xml test
         env:
           DISPLAY: :99.0
 
-      # Paso 6: Análisis de SonarQube
+      # Paso 8: Análisis de SonarQube
       - name: Install SonarScanner
         run: |
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
@@ -87,25 +88,25 @@ jobs:
             -Dsonar.login=$SONAR_TOKEN \
             -Dsonar.java.binaries=/home/runner/work/XMLApi/XMLApi/xmlapi/target/classes       
 
-      # Paso 7: Build de la imagen Docker
+      # Paso 9: Build de la imagen Docker
       - name: Build Docker Image
         run: |
           docker build -t ghcr.io/echotech-sv/xmlapi/xmlapi:latest .
 
-      # Paso 8: Login en GitHub Container Registry
+      # Paso 10: Login en GitHub Container Registry
       - name: Docker Login to GHCR
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      # Paso 9: Subida de la imagen Docker a GHCR
+      # Paso 11: Subida de la imagen Docker a GHCR
       - name: Push Docker Image
         run: |
           docker push ghcr.io/echotech-sv/xmlapi/xmlapi:latest
 
       #CD
 
-      # Paso 9: Publicacion en el servidor o un cluster de kubernetes
+      # Paso 12: Publicacion en el servidor o un cluster de kubernetes
 
-      # Paso 10: Publicacion en API Management o API Gateway
+      # Paso 13: Publicacion en API Management o API Gateway
 
-      # Paso 11: Automatizacion de Pruebas QA
+      # Paso 14: Automatizacion de Pruebas QA
