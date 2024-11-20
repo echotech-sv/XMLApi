@@ -26,25 +26,48 @@ public class XMLSchemaController {
      */  
     @Operation(summary = "Get xml", description = "Get xml")
     @GetMapping(path="/all", produces = MediaType.TEXT_XML_VALUE)
-    public ResponseEntity<String> getAllXML() {
-        Mono<String> result = xmlServiceClient.getXMLSchema();
-        log.info(result.block());
-        return ResponseEntity.ok(result.block());
+    public Mono<ResponseEntity<String>> getAllXML() {
+        return xmlServiceClient.getXMLSchema()
+                .doOnNext(result -> log.info(result))
+                .map(ResponseEntity::ok);
     }   
     
  
+
     /**
-     * @param search search text
-     * @return returns the XML by search 
+     * Retrieves an XML document based on the provided search text.
+     *
+     * @param text the search text used to find the XML document
+     * @return a Mono emitting a ResponseEntity containing the XML document as a string
      */
     @Operation(summary = "Get xml by search", description = "Get xml by search")
-    @GetMapping(path="/search/{text}",produces = MediaType.TEXT_XML_VALUE)
-    public ResponseEntity<String> getXMLBySeach(@PathVariable String text) {
-        Mono<String> result = xmlServiceClient.getXMLSchemaBySearch(text);
-        log.info(result.block());
-        return ResponseEntity.ok(result.block());
-    } 
+    @GetMapping(path="/search/{text}", produces = MediaType.TEXT_XML_VALUE)
+    public Mono<ResponseEntity<String>> getXMLBySearch(@PathVariable String text) {
+        return xmlServiceClient.getXMLSchemaBySearch(text)
+                .doOnNext(result -> log.info(result))
+                .map(ResponseEntity::ok);
+    }
     
+
+    /**
+     * @param input the input string
+     * @return returns the same input string
+     */
+    @GetMapping(path="/echo/{input}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> echo(@PathVariable String input) {
+        return ResponseEntity.ok(input);
+    }
+
+    //create a method that receives a string and returns it in uppercase
+    @GetMapping(path="/uppercase/{input}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> uppercase(@PathVariable String input) {
+        return ResponseEntity.ok(input.toUpperCase());
+    }
+
+    @GetMapping(path="/lowercase/{input}", produces = MediaType.TEXT_PLAIN_VALUE)
+    public ResponseEntity<String> lowercase(@PathVariable String input) {
+        return ResponseEntity.ok(input.toLowerCase());
+    }
     
 
     
