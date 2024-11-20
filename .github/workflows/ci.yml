@@ -44,7 +44,7 @@ jobs:
 
       # Paso 5: Ejecución de pruebas
       - name: Run tests
-        run: mvn test
+        run: mvn -f /home/runner/work/XMLApi/XMLApi/xmlapi/pom.xml test
         env:
           DISPLAY: :99.0
 
